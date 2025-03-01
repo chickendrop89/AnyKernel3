@@ -10,11 +10,11 @@ do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=1
-device.name1=topaz
-device.name2=tapas
-device.name3=sapphire
-device.name4=sapphiren
-device.name5=
+device.name1=pine
+device.name2=olive
+device.name3=olivelite
+device.name4=olivewood
+device.name5=mi439
 supported.versions=
 supported.patchlevels=
 supported.vendorpatchlevels=
@@ -30,7 +30,7 @@ set_perm_recursive 0 0 750 750 $RAMDISK/init* $RAMDISK/sbin;
 
 # boot shell variables
 BLOCK=/dev/block/bootdevice/by-name/boot;
-IS_SLOT_DEVICE=1;
+IS_SLOT_DEVICE=0;
 RAMDISK_COMPRESSION=auto;
 PATCH_VBMETA_FLAG=auto;
 
@@ -38,9 +38,9 @@ PATCH_VBMETA_FLAG=auto;
 . tools/ak3-core.sh;
 
 # boot install
-split_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
+#split_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
 
-flash_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+#flash_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
 ## end boot install
 
 ## init_boot files attributes
@@ -59,9 +59,9 @@ flash_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_
 #reset_ak;
 
 # init_boot install
-#dump_boot; # unpack ramdisk since it is the new first stage init ramdisk where overlay.d must go
+dump_boot; # unpack ramdisk since it is the new first stage init ramdisk where overlay.d must go
 
-#write_boot;
+write_boot;
 ## end init_boot install
 
 
